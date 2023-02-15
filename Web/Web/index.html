@@ -1,0 +1,71 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audios</title>
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyB5KkMf0dnBZPCpVu_BGNUV_n6HO62KWeQ",
+          authDomain: "pruebaaudioswsp.firebaseapp.com",
+          projectId: "pruebaaudioswsp",
+          storageBucket: "pruebaaudioswsp.appspot.com",
+          messagingSenderId: "930032627919",
+          appId: "1:930032627919:web:967d8fdde15fc3138207ba"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        let url = './Audios/infoAudio.json'; 
+        var audio = '';
+        fetch(url).then(response=>response.json()).then(data=>extractFileName(data));
+        
+        // var archivo = new XMLHttpRequest();
+        // archivo.open("GET", "./Audios/infoAudio.json");
+        // archivo.onload = function() {
+        //   if(archivo.status == 200) {
+        //     var audio = JSON.parse(archivo.responseText);
+        //     console.log(audio)
+        //   }
+        // }
+
+      }
+
+      function extractFileName(data) {
+        console.log(data);
+        let {nombreAudio} = data;
+        
+        let div = document.getElementById('insert-audio');
+        let audio = `
+           <audio controls>
+             <source src="Audios/${nombreAudio}.mp3" type="audio/mp3">
+           </audio>
+        `;
+        div.innerHTML = audio;
+      }
+    </script>
+
+    <div id="insert-audio">Este solo es un texto de prueba</div>
+
+    <!-- <audio controls>
+      <source src="Audios/prueba1.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio controls>
+      <source src="Audios/prueba2.mp3" type="audio/mp3">
+    </audio> -->
+</body>
+</html>
